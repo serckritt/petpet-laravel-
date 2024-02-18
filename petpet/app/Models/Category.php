@@ -15,6 +15,15 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    public function children()
+    {
+        return Category::select('id')
+            ->whereIn(
+                'parent_id', Category::select('id')
+                    ->where('parent_id', $this->id)
+            );
+    }
+
     public function product(): HasMany
     {
         return $this->hasMany(Product::class);

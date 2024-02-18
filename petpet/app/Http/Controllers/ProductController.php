@@ -2,17 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $category = Category::find($request->category);
+        $search = $request->search;
+
+        //상품의 부모의 부모의 id가 
+
+        $products = Product::when($search, function($query, $search){ // 검색어가 있을경우 검색
+                $query->where('name', 'like', "%$search%");
+
+            })->when($category, function($query, $category){ // 카테고리 검색시
+
+                if($category->parent_id == 0){ // 최상위 카테고리로 검색시 하위 카테고리까지 전부 검색
+                    return $query->whereIn('category_id', $category->children());
+
+                }else{ //아닐경우 해당 카테고리만 검색
+                    return $query->where('category_id', $category->id);
+                }
+
+            })->get();
+
+        //상품의 리뷰를 가져오는 과정 필요
+
+        return view('products.index', ['products' => $products, 'search' => $search, 'category' => $category]);
     }
 
     /**

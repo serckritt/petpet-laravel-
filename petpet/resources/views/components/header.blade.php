@@ -7,10 +7,10 @@
     ?>
     <div class="main_area">
         <span class="Logo">
-            <span class="logo_font"><a href="index.php"><img src="https://user-images.githubusercontent.com/126138315/243158653-97e42336-5dab-4fd5-95ae-884410717add.png" alt=""></a></span>
+            <span class="logo_font"><a href="{{ route('home') }}"><img src="https://user-images.githubusercontent.com/126138315/243158653-97e42336-5dab-4fd5-95ae-884410717add.png" alt=""></a></span>
         </span>
         <span class="search">
-            <form action="productList.php">
+            <form action="{{ route('products.index', ['search' => 'search']) }}">
                 <input type="text" name="search" placeholder="검색어 입력" class="main_input">
                 <button type="submit" class="main_search">
                     <img src="https://user-images.githubusercontent.com/126138315/234766265-6f2b2816-e296-423b-91d4-8b311ce20a07.png">
@@ -23,7 +23,7 @@
         </span>
         <span class="maIcon">
     <?php
-        if(!isset($_SESSION['userId'])) { // 로그인이 되어있지 않으면
+        if(!isset($_SESSION['userId'])) { // 로그인 기능 필요
             echo '<a href="Login.php"><img src="https://user-images.githubusercontent.com/131941441/234762876-da869556-7c8f-47d6-a70d-c5f0b36821c6.png"></a>
             <a href="joinMember.php"><img src="https://user-images.githubusercontent.com/131941441/234762850-db84c97d-bd6f-4c56-bf0c-128c2b481a0b.png"></a>
             <img src="https://user-images.githubusercontent.com/131941441/243267052-dbbdaa22-fa40-4060-87df-bea8c7bf8452.png">

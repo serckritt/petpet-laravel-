@@ -1,10 +1,10 @@
 <div class="nev1">
     <div class="nev2">
         <div class="subCategory">
-            <div class="scMenu"><a href="ProductList.php">인기상품 보러가기</a></div>
-            <div class="scMenu"><a href="ProductList.php?cate1=1">사료 및 간식 보러가기</a></div>
-            <div class="scMenu"><a href="ProductList.php?cate1=2">의약품 보러가기</a></div>
-            <div class="scMenu"><a href="ProductList.php?cate1=3">장난감/기타용품 보러가기</a></div>
+            <div class="scMenu"><a href="{{ route('products.index') }}">전체상품 보러가기</a></div>
+            <div class="scMenu"><a href="{{ route('products.index', ['category' => 1]) }}">사료 및 간식 보러가기</a></div>
+            <div class="scMenu"><a href="{{ route('products.index', ['category' => 2]) }}">의약품 보러가기</a></div>
+            <div class="scMenu"><a href="{{ route('products.index', ['category' => 3]) }}">장난감/기타용품 보러가기</a></div>
         </div>
     </div>        
 
@@ -34,7 +34,7 @@
                                         @foreach ($category2nd->child as $category3rd)
                                         {{-- 3차분류 --}}
                                             <li>
-                                                <a href="productList.php?cate3={{ $category3rd->id }}">{{ $category3rd->name }}</a>
+                                                <a href="{{ route('products.index', ['category' => $category3rd->id]) }}">{{ $category3rd->name }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
