@@ -2,9 +2,6 @@
     <div class="nevBg2"></div> {{-- 네비게이션바 배경 --}}
 </div>
 <div class="webWidth">
-    <?php
-                session_start();
-    ?>
     <div class="main_area">
         <span class="Logo">
             <span class="logo_font"><a href="{{ route('home') }}"><img src="https://user-images.githubusercontent.com/126138315/243158653-97e42336-5dab-4fd5-95ae-884410717add.png" alt=""></a></span>
@@ -22,26 +19,25 @@
             <b style="color: #99004c; font-size: 1.2em;">펫펫</b>
         </span>
         <span class="maIcon">
-    <?php
-        if(!isset($_SESSION['userId'])) { // 로그인 기능 필요
-            echo '<a href="Login.php"><img src="https://user-images.githubusercontent.com/131941441/234762876-da869556-7c8f-47d6-a70d-c5f0b36821c6.png"></a>
-            <a href="joinMember.php"><img src="https://user-images.githubusercontent.com/131941441/234762850-db84c97d-bd6f-4c56-bf0c-128c2b481a0b.png"></a>
-            <img src="https://user-images.githubusercontent.com/131941441/243267052-dbbdaa22-fa40-4060-87df-bea8c7bf8452.png">
-            ';
-        }
-        else { // 로그인이 되어있으면
-            $userid = $_SESSION['userId'];
-            $userName = $_SESSION['userName'];
-            echo'<a href="logout.php"><img src="https://user-images.githubusercontent.com/131941441/234762870-5dad6e3c-dff8-4172-9901-bc7ddccfa771.png"></a>
+            @auth   
+                {{-- 로그인시 --}}
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <input type="image" src="https://user-images.githubusercontent.com/131941441/234762870-5dad6e3c-dff8-4172-9901-bc7ddccfa771.png">
+                </form>
                 <a href="mypage.php"><img src="https://user-images.githubusercontent.com/131941441/234762883-154c2852-80b0-4d11-870c-f30c735ef93a.png"></a>
                 <a href="cart.php"><img src="https://user-images.githubusercontent.com/131941441/234762860-443c9901-e3e9-4aab-a982-4443371db23c.png"></a>
-            ';
-        } 
-    ?>
+            @else
+                {{-- 로그인 아닐시 --}}
+                <a href="{{ route('login') }}"><img src="https://user-images.githubusercontent.com/131941441/234762876-da869556-7c8f-47d6-a70d-c5f0b36821c6.png"></a>
+                <a href="{{ route('register') }}"><img src="https://user-images.githubusercontent.com/131941441/234762850-db84c97d-bd6f-4c56-bf0c-128c2b481a0b.png"></a>
+                <img src="https://user-images.githubusercontent.com/131941441/243267052-dbbdaa22-fa40-4060-87df-bea8c7bf8452.png">
+            @endauth
         </span>
     </div>
 </div>
 <div class="webWidth">
     <x-category/>
     {{ $slot }}
+    <x-footer/>
 </div>

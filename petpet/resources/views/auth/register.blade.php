@@ -1,4 +1,55 @@
-<x-guest-layout>
+<x-petpet-layout>
+    <div class="webWidth">
+        <div class="memberTop">
+            <div class="memberTop1">
+                <span class="logo_font"><a href="{{ route('home') }}">
+                <img src="https://user-images.githubusercontent.com/126138315/243158653-97e42336-5dab-4fd5-95ae-884410717add.png">
+                </a></span>
+            </div>
+            <div class="memberTop2">회원가입</div>
+        </div>
+        <div class="bmemberBox">
+            <form method="post" action="{{ route('register') }}" name="user">
+                @csrf
+                <div class="memberBox">
+                    <div class="inputBar">
+                        <input type="text" name="email" value="{{ old('email') }}" placeholder="이메일을 입력해주세요" class="idInput" required/>
+                    </div>
+                    <div class="inputBar">
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="이름" class="idInput" required/>
+                    </div>
+                    <div class="inputBar">
+                        <input type="password" name="password" placeholder="비밀번호" class="passInput" required/>
+                    </div>
+                    <div class="inputBar">
+                        <input type="password" name="password_confirmation" placeholder="비밀번호 확인" class="passInput" required/>
+                    </div>
+                    <div style="display: flex;">
+                        <div class="inputBar1">
+                            <div class="aa">010 - </div>
+                        </div>
+                        <div class="inputBar2">
+                            <input type="text" name="phone" placeholder="전화번호" class="idInput"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="error">
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                </div>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <button type="submit" class="joinBtn" onclick="button()">
+                        회원가입
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</x-petpet-layout>
+
+{{-- <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -49,4 +100,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}

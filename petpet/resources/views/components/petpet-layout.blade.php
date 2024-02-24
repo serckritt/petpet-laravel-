@@ -16,7 +16,6 @@
 </head>
 <body>
     {{ $slot }}
-    <x-footer/>
     <script type="text/javascript" src="{{ url('/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/category.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/product.js') }}"></script>

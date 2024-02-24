@@ -1,3 +1,43 @@
+<x-petpet-layout>
+    <div class="webWidth">
+        <div class="loginLogo">
+            <span class="logo_font"><a href="{{ route('home') }}">
+                <img src="https://user-images.githubusercontent.com/126138315/243158653-97e42336-5dab-4fd5-95ae-884410717add.png">
+            </a></span>
+        </div>
+        <div class="loginBox">
+            <form method="post" action="{{ route('login') }}">
+                @csrf
+                <p class="loginText">로그인 하시면 <b style="color:#ff7e7e;">펫<span style="color:#87003a;">펫</span></b>의<br>
+                서비스를 이용하실 수 있습니다</p>
+                <div class="inputField">
+                    <div class="inputBar">
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="이메일" class="idInput" required/>
+                    </div>
+                    
+                    <div class="inputBar">
+                        <input type="password" name="password" placeholder="비밀번호" class="passInput" required/>
+                    </div>
+                </div>
+                <div class = "error">
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
+                <br><br>
+                <button type="submit" class="loginBtn" onclick="button()">
+                    로그인
+                </button>
+                <br><br>
+            </form>
+        </div>
+        <div class="loginSupport">
+            <a href="{{ route('register') }}">회원가입</a> | 아이디찾기 | 비밀번호찾기
+            {{-- 찾기 기능은 지원 안되는 상태 --}}
+        </div>
+    </div>
+</x-petpet-layout>
+
+{{-- 
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -45,3 +85,4 @@
         </div>
     </form>
 </x-guest-layout>
+ --}}

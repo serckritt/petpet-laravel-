@@ -16,8 +16,6 @@ class ProductController extends Controller
         $category = Category::find($request->category);
         $search = $request->search;
 
-        //상품의 부모의 부모의 id가 
-
         $products = Product::when($search, function($query, $search){ // 검색어가 있을경우 검색
                 $query->where('name', 'like', "%$search%");
 
