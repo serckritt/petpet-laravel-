@@ -193,6 +193,9 @@ select::-ms-expand {
 .error ul {
     color: red;
     list-style-type: none;
-    line-height: 10px;
     font-size: 0.9em;
+    margin: 0;
+}
+.error ul li {
+    margin-top: 5px;
 }

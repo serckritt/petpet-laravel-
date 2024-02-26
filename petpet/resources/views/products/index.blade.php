@@ -1,10 +1,10 @@
 <x-petpet-layout>
     <x-header>
         <div class="listBx">
-            @if(isset($search))
+            @if(isset($search)) {{-- 검색창 검색시 텍스트 출력--}}
                 <div class="listText"><i>{{ $search }}</i> 키워드로 검색하신 결과입니다.</div>
             @endif
-            @if(isset($category))
+            @if(isset($category)) {{-- 카테고리 검색시 텍스트 출력--}}
                 <div class="listText"><i>{{ $category->name }}</i> 카테고리로 검색하신 결과입니다.</div>
             @endif
             @foreach ($products as $product)
