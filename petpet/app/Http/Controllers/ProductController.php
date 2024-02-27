@@ -16,15 +16,15 @@ class ProductController extends Controller
         $category = Category::find($request->category);
         $search = $request->search;
 
-        $products = Product::when($search, function($query, $search){ // 검색어가 있을경우 검색
-                $query->where('name', 'like', "%$search%");
+        $products = Product::when($search, function($query, $search){ 
+                $query->where('name', 'like', "%$search%"); // 검색어가 있을 경우에는 검색
 
-            })->when($category, function($query, $category){ // 카테고리 검색시
+            })->when($category, function($query, $category){ // 카테고리로 검색했을 경우에는
 
-                if($category->parent_id == 0){ // 최상위 카테고리로 검색시 하위 카테고리까지 전부 검색
+                if($category->parent_id == 0){  // 최상위 카테고리로 검색시 하위 카테고리까지 전부 검색
                     return $query->whereIn('category_id', $category->children());
 
-                }else{ //아닐경우 해당 카테고리만 검색
+                }else{                          //아닐경우 해당 카테고리만 검색
                     return $query->where('category_id', $category->id);
                 }
 
@@ -56,7 +56,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        // 카테고리 값에 따라 다른 페이지를 불러와야함
+        $product->load('reviews.user');
+
+        return view('products.show', ['product' => $product]);
     }
 
     /**

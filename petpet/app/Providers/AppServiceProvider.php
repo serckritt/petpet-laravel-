@@ -21,5 +21,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::shouldBeStrict();
+
+        view()->composer('auth.login', function ($view) {
+            $login_url = route('login');
+            $intend_url = url()->previous();
+
+            if ($intend_url === $login_url) {
+                $intend_url = route('home');
+            }
+
+            session(['url.intended' => $intend_url]);
+        });
     }
 }

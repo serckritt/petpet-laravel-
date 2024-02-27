@@ -11,6 +11,11 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -29,7 +34,16 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        $input = $request->validated();
+
+        Review::create([
+            'product_id' => $input['product_id'],
+            'user_id' => $request->user()->id,
+            'text' => $input['text'],
+            'rating' => $input['rating'],
+        ]);
+
+        return redirect()->route('products.show', ['product' => $input['product_id']]);
     }
 
     /**

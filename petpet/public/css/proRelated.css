@@ -43,10 +43,13 @@
          font-family: "ONE-Mobile-Regular"; }
 .line{ width: 87%; height: 0px; border: 0.5px solid #c5c5c5; }
 .twoMenu { position: relative; display: flex; width: 100%; height: 800px; }
+.atable { box-sizing: border-box; border-collapse : collapse; border-spacing : 0; border: 1px solid #858585; font-family: "ONE-Mobile-Regular"; }
+.tablebox{ width: 1000px; height:auto; margin-left: auto; margin-right: auto; margin-top: 20px; text-align: center;
+          padding-top: 5px; color: #ffffff; font-family: "ONE-Mobile-Regular"; font-size: 1.3em; }
 #menu1 { position: absolute; width: 100%; background-color: #ffffff; z-index: 3; }
 #menu2 { position: absolute; width: 100%; background-color: #ffffff; box-sizing: border-box; z-index: 2; font-family: "ONE-Mobile-Regular"; }
 #menu3 { position: absolute; width: 100%; background-color: #ffffff; z-index: 1; }
-#reviewWrite { position: absolute; width: 80px; height: 30px; background-color: #353535; color: #ffffff; right: 20px; }
+.reviewWrite { position: absolute; width: 80px; height: 30px; background-color: #353535; color: #ffffff; right: 20px; }
 .reviewBx1 { display: flex; width: 100%; height: 80px; }
 .reviewBx1 img { margin: 15px 10px 0 15px; width: 50px; height: 50px; }
 .rBxName { margin-top: 20px; box-sizing: border-box; font-size: 1.2em; }
@@ -58,6 +61,7 @@
 .box3{ width: 130px; height: 130px; border-radius: 30px 30px 0 0; border: 1px solid #000000; overflow: hidden; }
 .box4{ width: 130px; height: 40px; padding-top: 10px; box-sizing: border-box; font-size: 1em; text-align: center; font-family: "ONE-Mobile-Regular";
        color: #ffffff; background-color: #000000; }
+.box5{ display: flex; justify-content: space-between; width: 1000px; height: 63px; padding-top: 10px; margin-left: auto; margin-right: auto; margin-top: 10px;}
 .img{ width: 1000px; margin-left: auto; margin-right: auto; }
 .img img{ margin-left: -20px; }
 .listBx { width: 100%; margin-top: 50px; font-family: "ONE-Mobile-Regular"; }
@@ -83,6 +87,8 @@
 .bigTable { box-sizing: border-box; border-collapse : collapse; border-spacing : 0; border: 1px solid #858585; font-family: "ONE-Mobile-Regular"; }
 .table1 { width: 100px; border: 1px solid #000000; background-color: #252525; color: #ffffff; }
 .table2 { width: 1300px; border: 1px solid #000000; }
+.table3 { width: 700px; border: 1px solid #000000; color: #000; text-align: left; padding-left: 20px;}
+.table4 { width:50px; border: 1px solid #000000; color: #000; font-size: 0.7em; line-height: 0; }
 #starBx { width: 150px; }
 .pcount3{ display: flex; margin: 10px; width: 250px; overflow: hidden; }
 #reviewBtn{ width: 100px; height: 50px; border: 0; background-color: #252525; color: #ffffff; }
