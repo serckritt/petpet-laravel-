@@ -25,12 +25,24 @@
                             <span>{{ number_format($product->prize) }}</span><b style="color:#87003a">원</b><br>
                             <b style="color:green; font-size:0.6em;">배송비 무료</b>
                         </div>
-                        <div class="pbcReview">
-                            <div class="pbcIcon">
-                                <img src="">리뷰프사
+                        @if ( $product->reviews->first() != null )
+                            <div class="pbcReview">
+                                <div class="pbcIcon">
+                                    <img src="https://user-images.githubusercontent.com/126138315/234766275-37966cb5-fb4c-4924-b487-3f3595c7583a.png">
+                                    {{-- 임시 리뷰프사 --}}
+                                </div>
+                                <div class="pbcrContent">{{ $product->reviews()->latest()->first()->text }}</div>
                             </div>
-                            <div class="pbcrContent">리뷰내용</div>
-                        </div>
+                        @else
+                            <div class="pbcReview">
+                                <div class="pbcIcon">
+                                    <img src="https://user-images.githubusercontent.com/126138315/234766281-4bac09fc-2ff6-487a-86ec-d27a592ec212.png">
+                                    {{-- 리뷰가 없으면 오류이미지 --}}
+                                </div>
+                                <div class="pbcrContent">아직 리뷰가 없습니다</div>
+                            </div>
+                        @endif
+                        
                     </div>
                     <div class="proBxContent2">
                         <form action="sendcart.php" method="post">
