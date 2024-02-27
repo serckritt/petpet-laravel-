@@ -16,8 +16,7 @@ class ProductController extends Controller
         $category = Category::find($request->category);
         $search = $request->search;
 
-        $products = Product::with('reviews')
-            ->when($search, function($query, $search){ 
+        $products = Product::when($search, function($query, $search){ 
                 $query->where('name', 'like', "%$search%"); // 검색어가 있을 경우에는 검색
 
             })->when($category, function($query, $category){ // 카테고리로 검색했을 경우에는
@@ -29,7 +28,8 @@ class ProductController extends Controller
                     return $query->where('category_id', $category->id);
                 }
 
-            })->withAvg('reviews','rating')         //상품당 평점 평균 구하기
+            })->with('reviews')
+            ->withAvg('reviews','rating')         //상품당 평점 평균 구하기
             ->orderBy('reviews_avg_rating','desc')  //리뷰 평점순 정렬
             ->get();
 

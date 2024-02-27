@@ -33,18 +33,18 @@
     border: none;
     transform: translateY(-50%);
     border-radius: 10%;
-    background: rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.1);
   }
   .ad button::before {
     color: #ffffff;
     font-size: 20px;
   }
   .ad button.slick-prev:hover {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
     transition: all ease 0.5s 0s;
   }
   .ad button.slick-next:hover {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
     transition: all ease 0.5s 0s;
   }
   .ad button.slick-prev {
@@ -129,14 +129,14 @@
     border: none;
     transform: translateY(-50%);
     border-radius: 10%;
-    background: rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.2);
   }
   .conMainImg button::before {
     color: #ffffff;
     font-size: 20px;
   }
   .conMainImg button:hover {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
     transition: all ease 0.5s 0s;
   }
   .conMainImg button.slick-prev {

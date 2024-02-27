@@ -1,6 +1,6 @@
 {{-- 수정필요 장바구니등록시 링크 --}}
 <x-petpet-layout>
-    <x-header>
+    <x-petpet-page>
         <div class="probox">
             <div class="proimg">
                 <img src={{ $product->img }}>
@@ -46,6 +46,8 @@
             <button type="button" id="cBtn1">상품상세</button>
             <button type="button" id="cBtn2">리뷰</button>
         </div>
+
+        {{-- 이하 상품설명 및 리뷰내용, 리뷰작성창 --}}
         <div class="twoMenu">
             <x-product-detail :category="$product->category->parent->parent->id"/>
                 {{-- 상품설명 카테고리에 따라 다른 내용 출력 --}}
@@ -124,5 +126,5 @@
                 </form>
             </div>
         </div>
-    </x-header>
+    </x-petpet-page>
 </x-petpet-layout>

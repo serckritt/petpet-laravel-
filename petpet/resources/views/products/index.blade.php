@@ -2,7 +2,7 @@
 {{-- 카트기능 링크수정필요 --}}
 {{-- 배송비 무료 위치에 평점을 넣자 --}}
 <x-petpet-layout>
-    <x-header>
+    <x-petpet-page>
         <div class="listBx">
             @if(isset($search)) {{-- 검색창 검색시 텍스트 출력--}}
                 <div class="listText"><i>{{ $search }}</i> 키워드로 검색하신 결과입니다.</div>
@@ -62,5 +62,5 @@
                 </div>
             @endforeach
         </div>
-    </x-header>
+    </x-petpet-page>
 </x-petpet-layout>

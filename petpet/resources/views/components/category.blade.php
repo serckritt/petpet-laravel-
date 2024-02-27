@@ -9,7 +9,7 @@
     </div>        
 
     <div class="category">
-        <button id="cateBtn" type="button">
+        <button id="cateBtn" type="button">     {{-- 카테고리 여는 버튼, 이미지는 버튼용 이미지 --}}
             <div class="ctbi"><img src="https://user-images.githubusercontent.com/126138315/234766244-5d475cab-3f3b-44e2-84e5-1e29193f5501.png"></div>
         </button>
         <div class="allTheWay">
