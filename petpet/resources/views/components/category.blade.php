@@ -30,7 +30,8 @@
                             {{-- 2차분류 --}}
                                 <div class="subMesContent">
                                     <ul>
-                                        <b>{{ $category2nd->name }}</b><br><br>
+                                        <b>{{ $category2nd->name }}</b>
+                                        <br><br>
                                         @foreach ($category2nd->child as $category3rd)
                                         {{-- 3차분류 --}}
                                             <li>
