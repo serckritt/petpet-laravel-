@@ -3,17 +3,39 @@
     <x-petpet-page>
         <div class="userinfo">
             <div class="mypageSubtitle">회원정보 수정</div>
-            <form action="{{ route('profile.update') }}" method="post">
-            <div class="infoContent" >
-                이름 : <input type="text" placeholder="주문자명" name="name" {{--value={{-- 주문자명 --}} style="width:315px;height:40px;"/><br><br>
-                연락처 : 010 - <input type="text" placeholder="휴대폰 앞자리" name="phone1"{{-- value={{-- 폰앞자리 --}} style="width:120px;height:40px;"/> - 
-                <input type="text" placeholder="휴대폰 뒷자리" name="phone2" {{--value={{-- 폰뒷자리 --}} style="width:120px;height:40px;"/><br><br>
-                이메일 : <input type="text" placeholder="이메일 아이디" name="email" {{--value={{-- 이메일 --}} style="width:300px;height:40px;"/>
-                <hr>
-            </div>
-            <button type="submit" class="payBtn">
-                수정하기
-            </button>
+            <form method="post" action="{{ route('register') }}" name="user">
+                @csrf
+                <div class="memberBox" style="margin-left: 40px; height: 150px">
+                    <div class="inputBar">
+                        <input type="text" name="email" value="{{ old('email') }}" placeholder="이메일" class="idInput" required/>
+                    </div>
+                    <div class="inputBar">
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="이름" class="idInput" required/>
+                    </div>
+                    <div style="display: flex;">
+                        <div class="inputBar1">
+                            <div class="aa">010 - </div>
+                        </div>
+                        <div class="inputBar2">
+                            <input type="text" maxlength="4" name="phone1" placeholder="휴대폰 앞자리" class="idInput"/>
+                        </div>
+                        <div class="inputBar2">
+                            <input type="text" maxlength="4" name="phone2" placeholder="휴대폰 뒷자리" class="idInput"/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="error">
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('phone1')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('phone2')" class="mt-2" />
+                </div>
+                <div style="display: flex; margin-left: 40px; width: 100%;">
+                    <button type="submit" class="payBtn">
+                        수정하기
+                    </button>
+                </div>
             </form>
         </div>
         <div class="mypageContent">

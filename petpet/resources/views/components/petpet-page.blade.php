@@ -23,11 +23,11 @@
         </span>
         <span class="maIcon">
             @auth   {{-- 로그인시 나오는 아이콘 --}}
-                <form action="{{ route('logout') }}" method="POST">
+                <form action="{{ route('logout') }}" method="POST"> {{-- 로그아웃 --}}
                     @csrf
                     <input type="image" src="https://user-images.githubusercontent.com/131941441/234762870-5dad6e3c-dff8-4172-9901-bc7ddccfa771.png">
                 </form>
-                <a href="mypage.php"><img src="https://user-images.githubusercontent.com/131941441/234762883-154c2852-80b0-4d11-870c-f30c735ef93a.png"></a>
+                <a href="{{ route('mypage') }}"><img src="https://user-images.githubusercontent.com/131941441/234762883-154c2852-80b0-4d11-870c-f30c735ef93a.png"></a>
                 <a href="cart.php"><img src="https://user-images.githubusercontent.com/131941441/234762860-443c9901-e3e9-4aab-a982-4443371db23c.png"></a>
             @else   {{-- 로그인 아닐시 나오는 아이콘 --}}
                 <a href="{{ route('login') }}"><img src="https://user-images.githubusercontent.com/131941441/234762876-da869556-7c8f-47d6-a70d-c5f0b36821c6.png"></a>

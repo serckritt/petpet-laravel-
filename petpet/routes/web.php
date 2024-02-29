@@ -21,7 +21,7 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/mypage', function (){
     return view('profile.mypage');
-});
+})->name('mypage');
 
 Route::get('/dashboard', HomeController::class)->name('dashboard');
 
