@@ -29,15 +29,21 @@
                             <div class="aa">010 - </div>
                         </div>
                         <div class="inputBar2">
-                            <input type="text" name="phone" placeholder="전화번호" class="idInput"/>
+                            <input type="text" maxlength="4" name="phone1" placeholder="휴대폰 앞자리" class="idInput"/>
+                        </div>
+                        <div class="inputBar2">
+                            <input type="text" maxlength="4" name="phone2" placeholder="휴대폰 뒷자리" class="idInput"/>
                         </div>
                     </div>
                 </div>
+                
                 <div class="error">
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('phone1')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('phone2')" class="mt-2" />
                 </div>
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <button type="submit" class="joinBtn" onclick="button()">

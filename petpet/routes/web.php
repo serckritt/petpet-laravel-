@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
+Route::get('/mypage', function (){
+    return view('profile.mypage');
+});
+
+Route::get('/dashboard', HomeController::class)->name('dashboard');
+
 Route::resource('products', ProductController::class);
 Route::resource('reviews', ReviewController::class);
 
