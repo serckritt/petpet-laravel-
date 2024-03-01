@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="cbtnArea">
-                    <form action="{{ route('purchase.window') }}" method="POST">
+                    <form action="{{ route('buy') }}" method="POST">
                         @csrf
                         <button type="submit" class="payBtn">주문하기</button>
                     </form>

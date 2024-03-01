@@ -42,7 +42,7 @@
                         <input type="hidden" name="count" id="hiddencnt" value="1"> {{-- 수량 --}}
                         <input type="hidden" name="type" value="1"> {{-- 바로구매와 장바구니구매를 구분하는 기능--}}
                         <button type="submit" id="shopBasketBtn">장바구니</button>
-                        <button type="submit" id="buyNowBtn" formaction="{{ route('purchase.window') }}">바로구매</button>
+                        <button type="submit" id="buyNowBtn" formaction="{{ route('buy') }}">바로구매</button>
                     </div>
                 </form>
             </div>

@@ -58,14 +58,14 @@
                     @php($sum = 0)
                     @isset($carts)
                         @foreach ($carts as $cart)
-                            <x-purchase-list :product="$cart->product" :count="$cart->count"/>
+                            <x-buy-list :product="$cart->product" :count="$cart->count"/>
                         @endforeach
                         @php($sum += $cart->product->prize * $cart->count)
                     @else
                         <input type="hidden" name="type" value="1">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="count" value="{{ $count }}">
-                        <x-purchase-list :product="$product" :count="$count"/>
+                        <x-buy-list :product="$product" :count="$count"/>
                         @php($sum = $product->prize * $count)
                     @endisset
                     <hr>

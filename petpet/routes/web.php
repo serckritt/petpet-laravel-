@@ -26,7 +26,7 @@ Route::resource('carts', CartController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage', MyPageController::class)->name('mypage');
-    Route::post('purchase', [PurchaseController::class, 'purchaseWindow'])->name('purchase.window');
+    Route::post('buy', [PurchaseController::class, 'buy'])->name('buy');
 });
 
 Route::resource('products', ProductController::class);
