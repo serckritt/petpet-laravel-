@@ -3,24 +3,26 @@
     <x-petpet-page>
         <div class="userinfo">
             <div class="mypageSubtitle">회원정보 수정</div>
-            <form method="post" action="{{ route('register') }}" name="user">
-                @csrf
+            <form method="post" action="{{ route('profile.update') }}" name="user">
                 <div class="memberBox" style="margin-left: 40px; height: 150px">
+                
+                    @csrf
+                    @method('patch')
                     <div class="inputBar">
-                        <input type="text" name="email" value="{{ old('email') }}" placeholder="이메일" class="idInput" required/>
+                        <input type="text" name="email" value="{{ old('email', $user->email) }}" placeholder="이메일" class="idInput" required/>
                     </div>
                     <div class="inputBar">
-                        <input type="text" name="name" value="{{ old('name') }}" placeholder="이름" class="idInput" required/>
+                        <input type="text" name="name" value="{{ old('name', $user->name) }}" placeholder="이름" class="idInput" required/>
                     </div>
                     <div style="display: flex;">
                         <div class="inputBar1">
                             <div class="aa">010 - </div>
                         </div>
                         <div class="inputBar2">
-                            <input type="text" maxlength="4" name="phone1" placeholder="휴대폰 앞자리" class="idInput"/>
+                            <input type="text" maxlength="4" value="{{ old('phone1', substr($user->phone,3,4)) }}" name="phone1" placeholder="휴대폰 앞자리" class="idInput"/>
                         </div>
                         <div class="inputBar2">
-                            <input type="text" maxlength="4" name="phone2" placeholder="휴대폰 뒷자리" class="idInput"/>
+                            <input type="text" maxlength="4" value="{{ old('phone1', substr($user->phone,-4,4)) }}" name="phone2" placeholder="휴대폰 뒷자리" class="idInput"/>
                         </div>
                     </div>
                 </div>
@@ -35,7 +37,42 @@
                     <button type="submit" class="payBtn">
                         수정하기
                     </button>
+                    @if (session('status') === 'profile-updated')
+                        <p style="line-height: 140px; margin: 0 0 0 20px">회원정보가 수정되었습니다.</p>
+                    @endif
+                </div>  
+            </form>
+        </div>
+        <div class="userinfo">
+            <div class="mypageSubtitle">비밀번호 수정</div>
+            <form method="post" action="{{ route('password.update') }}" name="user">
+                <div class="memberBox" style="margin-left: 40px; height: 150px">
+                
+                    @csrf
+                    @method('put')
+                    <div class="inputBar">
+                        <input type="password" name="current_password" placeholder="현재 비밀번호" class="passInput" required/>
+                    </div>
+                    <div class="inputBar">
+                        <input type="password" name="password" placeholder="새 비밀번호" class="passInput" required/>
+                    </div>
+                    <div class="inputBar">
+                        <input type="password" name="password_confirmation" placeholder="비밀번호 확인" class="passInput" required/>
+                    </div>
                 </div>
+                <div class="error">
+                    <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+                    <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+                    <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+                </div>
+                <div style="display: flex; margin-left: 40px; width: 100%;">
+                    <button type="submit" class="payBtn">
+                        수정하기
+                    </button>
+                    @if (session('status') === 'password-updated')
+                        <p style="line-height: 140px; margin: 0 0 0 20px">비밀번호가 수정되었습니다.</p>
+                    @endif
+                </div>  
             </form>
         </div>
         <div class="mypageContent">

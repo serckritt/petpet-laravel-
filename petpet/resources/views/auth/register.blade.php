@@ -29,10 +29,10 @@
                             <div class="aa">010 - </div>
                         </div>
                         <div class="inputBar2">
-                            <input type="text" maxlength="4" name="phone1" placeholder="휴대폰 앞자리" class="idInput"/>
+                            <input type="text" maxlength="4" name="phone1" value="{{ old('phone1') }}" placeholder="휴대폰 앞자리" class="idInput"/>
                         </div>
                         <div class="inputBar2">
-                            <input type="text" maxlength="4" name="phone2" placeholder="휴대폰 뒷자리" class="idInput"/>
+                            <input type="text" maxlength="4" name="phone2" value="{{ old('phone2') }}" placeholder="휴대폰 뒷자리" class="idInput"/>
                         </div>
                     </div>
                 </div>

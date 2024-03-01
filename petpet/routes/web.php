@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/mypage', function (){
-    return view('profile.mypage');
-})->name('mypage');
+Route::get('/mypage', MyPageController::class)->middleware('auth')->name('mypage');
 
 Route::get('/dashboard', HomeController::class)->name('dashboard');
 
