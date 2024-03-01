@@ -22,11 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/mypage', MyPageController::class)->middleware('auth')->name('mypage');
-
 Route::resource('carts', CartController::class)->middleware('auth');
 
-Route::post('purchase', [PurchaseController::class, 'window'])->name('purchase')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage', MyPageController::class)->name('mypage');
+    Route::post('purchase', [PurchaseController::class, 'purchaseWindow'])->name('purchase.window');
+});
 
 Route::resource('products', ProductController::class);
 Route::resource('reviews', ReviewController::class);

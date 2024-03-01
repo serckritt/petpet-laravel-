@@ -61,9 +61,10 @@
                     </div>
                 </div>
                 <div class="cbtnArea">
-                    <button type="button" class="payBtn" onclick="location.href='{{ route('purchase') }}'">
-                        주문하기
-                    </button>
+                    <form action="{{ route('purchase.window') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="payBtn">주문하기</button>
+                    </form>
                 </div>
             </div>
         </div>
