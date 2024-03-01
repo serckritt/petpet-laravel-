@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyPageController;
@@ -24,6 +25,8 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/mypage', MyPageController::class)->middleware('auth')->name('mypage');
 
 Route::resource('carts', CartController::class)->middleware('auth');
+
+Route::post('purchase', [PurchaseController::class, 'window'])->name('purchase')->middleware('auth');
 
 Route::resource('products', ProductController::class);
 Route::resource('reviews', ReviewController::class);

@@ -17,6 +17,7 @@
 </head>
 <body bgColor="{{$bgColor}}">
     {{ $slot }}
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="{{ url('/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/category.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/product.js') }}"></script>

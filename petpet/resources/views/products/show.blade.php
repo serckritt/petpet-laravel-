@@ -35,14 +35,14 @@
                     <div class="pcount1">구매 가격</div>
                     <div id="prResult">{{ number_format($product->prize) }}</div>원 
                 </div>
-                <form method="post" name="buy" action="{{ route('carts.store') }}"> {{-- 실제 장바구니 등록 폼 --}}
+                <form method="POST" action="{{ route('carts.store') }}"> {{-- 실제 장바구니 등록 폼 --}}
                     @csrf
                     <div class="pBtn">
                         <input type="hidden" name="product_id" value="{{ $product->id }}"> {{-- 상품종류 --}}
                         <input type="hidden" name="count" id="hiddencnt" value="1"> {{-- 수량 --}}
                         <input type="hidden" name="type" value="1"> {{-- 바로구매와 장바구니구매를 구분하는 기능--}}
                         <button type="submit" id="shopBasketBtn">장바구니</button>
-                        <button type="submit" id="buyNowBtn" formaction="buy.php">바로구매</button>
+                        <button type="submit" id="buyNowBtn" formaction="{{ route('purchase') }}">바로구매</button>
                     </div>
                 </form>
             </div>

@@ -61,8 +61,7 @@
                     </div>
                 </div>
                 <div class="cbtnArea">
-                    <button type="button" class="payBtn" onclick="location.href='buy.php'">
-                        {{-- 링크수정필요 --}}
+                    <button type="button" class="payBtn" onclick="location.href='{{ route('purchase') }}'">
                         주문하기
                     </button>
                 </div>
