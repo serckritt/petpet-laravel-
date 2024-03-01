@@ -16,7 +16,7 @@
         </div>
         <div class="cartContent">
             {{-- 링크수정필요 --}}
-            <form method="post" action="purchase.php" name="user">
+            <form method="POST" action="{{ route('purchase') }}" name="user">
                 @csrf
                 <div class="cartTitle">주문결제</div>
                 <div class="buyContent">
@@ -40,6 +40,11 @@
                         <div class="inputBar">
                             <input type="text" id="sample6_detailAddress" name="detail_address"  placeholder="상세주소" class="idInput">
                         </div>
+                    </div>
+                    <div class = "error">
+                        <x-input-error :messages="$errors->get('postcode')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('detail_address')" class="mt-2" />
                     </div>
                     <br><br>
                     <select name="delivery_request">
@@ -109,6 +114,9 @@
                             <option value="4개월">4개월</option>
                             <option value="8개월">8개월</option>
                         </select>
+                    </div>
+                    <div class = "error">
+                        <x-input-error :messages="$errors->get('credit_card')" class="mt-2" />
                     </div>
                     <div class="lumpSum">
                         <div class="lum1">상품가격 {{ number_format($sum) }}원</div>

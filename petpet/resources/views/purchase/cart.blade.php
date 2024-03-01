@@ -25,47 +25,57 @@
                     </div>
                     <div class="bhBox">
                         @php($sum=0)
-                        @foreach ($carts as $cart)
-                            <form action="{{ route('carts.destroy', ['cart' => $cart->id ]) }}" method="POST" id="form{{ $loop->count }}">
-                                @csrf
-                                @method('DELETE')
-                                <div class="cartItem">
-                                    <div class="ciBx2">
-                                        <a href="{{ route('products.show', ['product' => $cart->product->id]) }}"><img src={{ $cart->product->img }}></a>
+                        @forelse ($carts as $cart)
+                            <div class="cartItem">
+                                <div class="ciBx2">
+                                    <a href="{{ route('products.show', ['product' => $cart->product->id]) }}"><img src={{ $cart->product->img }}></a>
+                                </div>
+                                <div class="ciBx3">
+                                    <div style="width: 730px;">
+                                        {{ $cart->product->name }}<br><br>
+                                        <span>수량 {{ $cart->count }}개 선택</span>
                                     </div>
-                                    <div class="ciBx3">
-                                        <div style="width: 730px;">
-                                            {{ $cart->product->name }}<br><br>
-                                            <span>수량 {{ $cart->count }}개 선택</span>
-                                        </div>
-                                        <div>
+                                    <div>
+                                        <form action="{{ route('carts.destroy', ['cart' => $cart->id ]) }}" method="POST" id="form{{ $loop->count }}">
+                                            @csrf
+                                            @method('DELETE')
                                             <button type="button" onclick="
                                                 if (confirm('장바구니에서 삭제하시겠습니까?')) {
                                                     document.getElementById('form'+{{$loop->count}}).submit();
                                                 }">X</button>
-                                        </div>
+                                        </form>
                                     </div>
-                                    <div class="ciBx4">{{ number_format($cart->product->prize * $cart->count)}}</div>
-                                    <div class="ciBx5">무료</div>
                                 </div>
-                            </form>
+                                <div class="ciBx4">{{ number_format($cart->product->prize * $cart->count)}}</div>
+                                <div class="ciBx5">무료</div>
+                            </div>
                             @php($sum += $cart->product->prize * $cart->count)
-                        @endforeach
-                        <div class="lumpSum">
-                            <div class="lum1">상품가격 {{ number_format($sum) }}원</div>
-                            <div class="lum2">+</div>
-                            <div class="lum1">배송비 무료</div>
-                            <div class="lum2">=</div>
-                            <div class="lum1">총 {{ number_format($sum) }}원</div>
-                        </div>
+                        @empty
+                            <div class="bhBox">
+                                <div class="warningIcon">
+                                    <img src="https://user-images.githubusercontent.com/126138315/234766281-4bac09fc-2ff6-487a-86ec-d27a592ec212.png">
+                                </div>
+                                <div class="bhBoxContent">장바구니가 비었습니다</div>
+                            </div> 
+                        @endforelse
+                        @if ($carts)
+                            <div class="lumpSum">
+                                <div class="lum1">상품가격 {{ number_format($sum) }}원</div>
+                                <div class="lum2">+</div>
+                                <div class="lum1">배송비 무료</div>
+                                <div class="lum2">=</div>
+                                <div class="lum1">총 {{ number_format($sum) }}원</div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <div class="cbtnArea">
-                    <form action="{{ route('buy') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="payBtn">주문하기</button>
-                    </form>
-                </div>
+                @if ($sum!=0)
+                    <div class="cbtnArea">
+                        <form action="{{ route('buy') }}" method="GET">
+                            <button type="submit" class="payBtn">주문하기</button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('count');
             $table->integer('postcode');
             $table->string('address');
-            $table->string('detail_address');
             $table->string('delivery_request');
             $table->string('credit_card');
             $table->string('installment');

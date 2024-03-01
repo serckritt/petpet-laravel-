@@ -1,6 +1,42 @@
 {{-- 주문기록 수정필요 --}}
 <x-petpet-layout>
     <x-petpet-page>
+        {{-- 구매기록 --}}
+        @forelse ($records as $record)
+            <div class="cartItem">
+                <div class="ciBx2" style="text-align:center; padding: 50px 0;">
+                    {{ $record->created_at }}
+                </div>
+                <div class="ciBx2">
+                    <a href="{{ route('products.show', ['product' => $record->product->id ]) }}"><img src="{{ $record->product->img }}"></a>
+                </div>
+                <div class="ciBx3">
+                    <div style="width: 760px;">
+                        {{ $record->product->name }}<br><br>
+                        <span>수량 {{ $record->count }}개 선택</span>
+                    </div>
+                    <div>
+                        <form method="POST" action="{{ route('records.destroy', ['record' => $record->id ]) }}" id="form{{ $loop->count }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="
+                                if (confirm('장바구니에서 삭제하시겠습니까?')) {
+                                    document.getElementById('form'+{{$loop->count}}).submit();
+                                }">X</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="ciBx4" style="text-align:center;">준비중</div>
+                <div class="ciBx5" style="text-align:center;">없음</div>
+            </div>  
+        @empty
+            <div class="bhBox">
+                <div class="warningIcon">
+                    <img src="https://user-images.githubusercontent.com/126138315/234766281-4bac09fc-2ff6-487a-86ec-d27a592ec212.png">
+                </div>
+                <div class="bhBoxContent">구매 내역이 없습니다</div>
+            </div>  
+        @endforelse
         <div class="userinfo">
             <div class="mypageSubtitle">회원정보 수정</div>
             <form method="post" action="{{ route('profile.update') }}" name="user">
@@ -82,35 +118,6 @@
                     <div class="proSub3">상태</div>
                     <div class="proSub4">재고</div>
                 </div>
-                {{-- record 테이블 필요 --}}
-                {{-- @forelse ($collection as $item)
-                    <div class="cartItem">
-                        <div class="ciBx2" style="text-align:center; padding: 50px 0;">
-                            <?=//$date?>
-                        </div>
-                        <div class="ciBx2">
-                            <a href="productpage.php?num=<?=//$pro_num?>"><img src=<?=//$img?>></a>
-                        </div>
-                        <div class="ciBx3">
-                            <div style="width: 760px;">
-                                <?=//$name?><br><br>
-                                <span>수량 <?=//$count?>개 선택</span>
-                            </div>
-                            <div>
-                                <button type="button" onclick="del(<?=//$record_num?>)">X</button>
-                            </div>
-                        </div>
-                        <div class="ciBx4" style="text-align:center;">준비중</div>
-                        <div class="ciBx5" style="text-align:center;">없음</div>
-                    </div>  
-                @empty
-                    <div class="bhBox">
-                        <div class="warningIcon">
-                            <img src="https://user-images.githubusercontent.com/126138315/234766281-4bac09fc-2ff6-487a-86ec-d27a592ec212.png">
-                        </div>
-                        <div class="bhBoxContent">구매 내역이 없습니다</div>
-                    </div>  
-                @endforelse --}}
             </div>
         </div>
     </x-petpet-page>

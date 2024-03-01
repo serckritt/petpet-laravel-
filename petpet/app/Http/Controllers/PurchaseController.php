@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseRequest;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Record;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -22,12 +24,41 @@ class PurchaseController extends Controller
         }
     }
 
-    public function purchase(Request $request){
+    public function purchase(PurchaseRequest $request){
 
-        if(isset($request->type)){
+        $input = $request->validated();
+
+        if(isset($input['type'])){
             
+            Record::create([
+                'count' =>  $input['count'],
+                'product_id' => $input['product_id'],
+                'user_id' => $request->user()->id,
+                'postcode' =>  $input['postcode'],
+                'address' => $input['address'].' '.$input['detail_address'],
+                'delivery_request' =>  $input['delivery_request'],
+                'credit_card' => $input['credit_card'],
+                'installment' => $input['installment'],
+            ]);
         }else{
-            
+            $carts = Cart::where('user_id', $request->user()->id);
+            $getted = $carts->get();
+
+            foreach($getted as $cart){
+                Record::create([
+                    'count' =>  $cart->count,
+                    'product_id' => $cart->product_id,
+                    'user_id' => $request->user()->id,
+                    'postcode' =>  $input['postcode'],
+                    'address' => $input['address'].' '.$input['detail_address'],
+                    'delivery_request' =>  $input['delivery_request'],
+                    'credit_card' => $input['credit_card'],
+                    'installment' => $input['installment'],
+                ]);
+            }
+            $carts->delete();
         }
+
+        return redirect()->route('mypage');
     }
 }

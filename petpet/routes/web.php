@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecordController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +27,11 @@ Route::resource('carts', CartController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage', MyPageController::class)->name('mypage');
-    Route::post('buy', [PurchaseController::class, 'buy'])->name('buy');
+    Route::get('buy', [PurchaseController::class, 'buy'])->name('buy');
+    Route::post('purchase', [PurchaseController::class, 'purchase'])->name('purchase');
 });
+
+Route::delete('records', [RecordController::class, 'destroy'])->name('records.destroy');
 
 Route::resource('products', ProductController::class);
 Route::resource('reviews', ReviewController::class);
