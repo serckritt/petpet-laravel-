@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\ProductController;
@@ -22,7 +23,7 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/mypage', MyPageController::class)->middleware('auth')->name('mypage');
 
-Route::get('/dashboard', HomeController::class)->name('dashboard');
+Route::resource('carts', CartController::class)->middleware('auth');
 
 Route::resource('products', ProductController::class);
 Route::resource('reviews', ReviewController::class);

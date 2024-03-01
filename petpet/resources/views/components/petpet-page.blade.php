@@ -22,14 +22,16 @@
             <b style="color: #99004c; font-size: 1.2em;">펫펫</b>
         </span>
         <span class="maIcon">
-            @auth   {{-- 로그인시 나오는 아이콘 --}}
+            @auth   
+                {{-- 로그인시 나오는 아이콘 --}}
                 <form action="{{ route('logout') }}" method="POST"> {{-- 로그아웃 --}}
                     @csrf
                     <input type="image" src="https://user-images.githubusercontent.com/131941441/234762870-5dad6e3c-dff8-4172-9901-bc7ddccfa771.png">
                 </form>
                 <a href="{{ route('mypage') }}"><img src="https://user-images.githubusercontent.com/131941441/234762883-154c2852-80b0-4d11-870c-f30c735ef93a.png"></a>
-                <a href="cart.php"><img src="https://user-images.githubusercontent.com/131941441/234762860-443c9901-e3e9-4aab-a982-4443371db23c.png"></a>
-            @else   {{-- 로그인 아닐시 나오는 아이콘 --}}
+                <a href="{{ route('carts.index') }}"><img src="https://user-images.githubusercontent.com/131941441/234762860-443c9901-e3e9-4aab-a982-4443371db23c.png"></a>
+            @else   
+                {{-- 로그인 아닐시 나오는 아이콘 --}}
                 <a href="{{ route('login') }}"><img src="https://user-images.githubusercontent.com/131941441/234762876-da869556-7c8f-47d6-a70d-c5f0b36821c6.png"></a>
                 <a href="{{ route('register') }}"><img src="https://user-images.githubusercontent.com/131941441/234762850-db84c97d-bd6f-4c56-bf0c-128c2b481a0b.png"></a>
                 <img src="https://user-images.githubusercontent.com/131941441/243267052-dbbdaa22-fa40-4060-87df-bea8c7bf8452.png">

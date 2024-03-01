@@ -5,7 +5,6 @@
             <div class="mypageSubtitle">회원정보 수정</div>
             <form method="post" action="{{ route('profile.update') }}" name="user">
                 <div class="memberBox" style="margin-left: 40px; height: 150px">
-                
                     @csrf
                     @method('patch')
                     <div class="inputBar">
@@ -47,7 +46,6 @@
             <div class="mypageSubtitle">비밀번호 수정</div>
             <form method="post" action="{{ route('password.update') }}" name="user">
                 <div class="memberBox" style="margin-left: 40px; height: 150px">
-                
                     @csrf
                     @method('put')
                     <div class="inputBar">

@@ -1,5 +1,3 @@
-{{-- 리뷰기능 보완필요? --}}
-{{-- 카트기능 링크수정필요 --}}
 <x-petpet-layout>
     <x-petpet-page>
         <div class="listBx">
@@ -49,9 +47,10 @@
                         
                     </div>
                     <div class="proBxContent2">
-                        <form action="sendcart.php" method="post">
-                                <input type="hidden" value="{{ $product->id }}" name="id">
-                                <input type="hidden" value="1" name="count" id="productCount{{ $loop->iteration }}">
+                        <form action="{{ route('carts.store') }}" method="post">
+                            @csrf
+                            <input type="hidden" value="{{ $product->id }}" name="product_id">
+                            <input type="hidden" value="1" name="count" id="productCount{{ $loop->iteration }}">
                             <div>
                                 <div class="pbCount">
                                     <button type ="button" id="pbNumMinus{{ $loop->iteration }}">-</button>

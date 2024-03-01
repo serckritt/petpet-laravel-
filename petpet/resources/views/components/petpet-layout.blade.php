@@ -1,3 +1,4 @@
+@props(['bgColor' => 'ffffff'])
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,7 +15,7 @@
     <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <title>펫펫</title>
 </head>
-<body>
+<body bgColor="{{$bgColor}}">
     {{ $slot }}
     <script type="text/javascript" src="{{ url('/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url('/js/category.js') }}"></script>

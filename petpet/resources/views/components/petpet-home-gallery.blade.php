@@ -16,7 +16,7 @@
                                 </div>
                                 <div>
                                     {{-- 평점은 소수점 2자리에서 반올림 --}}
-                                    평점 {{ round($product->reviews_avg_rating, 2) }} 리뷰 {{ $product->reviews_count }}개
+                                    평점 {{ round($product->reviews_avg_rating, 2) }} 리뷰 {{ $product->reviews_count }}
                                 </div>
                             </div>
                             <div class="reviewPreview"> 
