@@ -14,7 +14,12 @@
                     <span>{{ number_format($product->prize) }}</span><b style="color:#99004c;">원</b>
                 </div>
                 <div class="pinfo1">
-                    배송비 무료
+                    <div class="wrap-star">
+                        <b style="color:green; font-size:0.6em;">평점 {{ round($product->reviews_avg_rating,2) }}</b>
+                        <div class='star-rating'>
+                            <span style ="width:{{ (round($product->reviews_avg_rating,2)*20).'%'}}"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="line"></div>
                 <div class="pcount">

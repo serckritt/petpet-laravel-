@@ -8,7 +8,7 @@ class MyPageController extends Controller
 {
     public function __invoke(Request $request)
     {
-        return view('profile.mypage', [
+        return view('mypage', [
             'user' => $request->user(),
         ]);
     }

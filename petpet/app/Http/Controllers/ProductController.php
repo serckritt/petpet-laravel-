@@ -61,6 +61,7 @@ class ProductController extends Controller
     {
         // 카테고리 값에 따라 다른 페이지를 불러와야함
         $product->load('reviews.user');
+        $product->loadAvg('reviews','rating');        //상품당 평점 평균 구하기
 
         return view('products.show', ['product' => $product]);
     }
