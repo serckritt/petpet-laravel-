@@ -1,7 +1,7 @@
 <div class="nev1">
     <div class="nev2">
         <div class="subCategory">
-            <div class="scMenu"><a href="{{ route('products.index') }}">전체상품 보러가기</a></div>
+            <div class="scMenu"><a href="{{ route('products.index') }}">인기상품 보러가기</a></div>
             <div class="scMenu"><a href="{{ route('products.index', ['category' => 1]) }}">사료 및 간식 보러가기</a></div>
             <div class="scMenu"><a href="{{ route('products.index', ['category' => 2]) }}">의약품 보러가기</a></div>
             <div class="scMenu"><a href="{{ route('products.index', ['category' => 3]) }}">장난감/기타용품 보러가기</a></div>
