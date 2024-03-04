@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //리뷰 테이블 생성
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('text');
-            $table->double('rating');
-            $table->integer('user_id');
-            $table->integer('product_id');
+            $table->string('text');         //리뷰내용
+            $table->double('rating');       //리뷰의 평점
+            $table->integer('user_id');     //유저아이디
+            $table->integer('product_id');  //상품아이디
             $table->timestamps();
         });
     }

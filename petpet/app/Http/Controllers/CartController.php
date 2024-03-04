@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function store(StoreCartRequest $request){
+        //장바구니 등록
         $input = $request->validated();
 
         Cart::create([
@@ -21,6 +22,7 @@ class CartController extends Controller
     }
 
     public function index(Request $request){
+        //장바구니 목록 보기
         $carts = Cart::where('user_id', $request->user()->id)
             ->with('product')  
             ->get();
@@ -29,6 +31,7 @@ class CartController extends Controller
     }
 
     public function destroy(Cart $cart){
+        //버튼 클릭시 장바구니 삭제
         $cart->delete();
 
         return redirect()->route('carts.index');

@@ -15,7 +15,6 @@
             </div>
         </div>
         <div class="cartContent">
-            {{-- 링크수정필요 --}}
             <form method="POST" action="{{ route('purchase') }}" name="user">
                 @csrf
                 <div class="cartTitle">주문결제</div>
@@ -24,6 +23,7 @@
                     <p>이름 : {{ Auth::user()->name }}</p>
                     <p>이메일 : {{ Auth::user()->email }}</p>
                     <p>연락처 : {{ substr(Auth::user()->phone,0,3).'-'.substr(Auth::user()->phone,3,4).'-'.substr(Auth::user()->phone,-4,4) }}</p>
+                    {{-- 010xxxxzzz를 3자리-4자리-4자리로 끊는 과정 --}}
                     <br><hr><br>
                     <div class="memberBox" style="margin-left: 0; height: 150px;">
                         <div style="display: flex;">
@@ -41,11 +41,13 @@
                             <input type="text" id="sample6_detailAddress" name="detail_address"  placeholder="상세주소" class="idInput">
                         </div>
                     </div>
-                    <div class = "error">
-                        <x-input-error :messages="$errors->get('postcode')" class="mt-2" />
-                        <x-input-error :messages="$errors->get('address')" class="mt-2" />
-                        <x-input-error :messages="$errors->get('detail_address')" class="mt-2" />
-                    </div>
+                    {{-- 에러메시지창 --}}
+                        <div class = "error">
+                            <x-input-error :messages="$errors->get('postcode')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('detail_address')" class="mt-2" />
+                        </div>
+                    {{-- 에러메시지창 --}}
                     <br><br>
                     <select name="delivery_request">
                         <option value="요청사항 없음">배송시 요청사항 선택(기본 요청사항 없음)</option>
@@ -60,13 +62,15 @@
                         <div style="width:170px; text-align:center;">가격</div>
                         <div style="width:170px; text-align:center;">배송비</div>
                     </div>
-                    @php($sum = 0)
-                    @isset($carts)
+                    @php($sum = 0) {{-- 합계를 구하는 용도 --}}
+                    @isset($carts)  {{-- 장바구니 구매 or 바로구매 여부 --}}
                         @foreach ($carts as $cart)
+                            {{-- 장바구니 구매시 장바구니 내의 모든 상품 나열--}}
                             <x-buy-list :product="$cart->product" :count="$cart->count"/>
+                            @php($sum += $cart->product->prize * $cart->count)
                         @endforeach
-                        @php($sum += $cart->product->prize * $cart->count)
                     @else
+                        {{-- 바로구매시 리퀘스트로 받은 상품목록 --}}
                         <input type="hidden" name="type" value="1">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="count" value="{{ $count }}">
@@ -78,46 +82,49 @@
                     <button type="button" id="payMath" class="blackButton">카드사선택</button><br><br>
                     <input type="hidden" id="card" name="credit_card" value="">
 
-                    {{-- 즉시구매 여부확인 --}}
-                    <div id="payMa">
-                        <div class="payMa1">
-                            <div id="bankBorder1">
-                                <button type="button" style="border: 0; background-color: #ffffff;" id="bank1">
-                                    <img src="https://user-images.githubusercontent.com/126138315/242484260-1075970b-5045-4131-a167-6554be5bc117.png">
-                                </button>
+                    {{-- 버튼 클릭시 등장하는 영역 --}}
+                        <div id="payMa">
+                            <div class="payMa1">
+                                <div id="bankBorder1">
+                                    <button type="button" style="border: 0; background-color: #ffffff;" id="bank1">
+                                        <img src="https://user-images.githubusercontent.com/126138315/242484260-1075970b-5045-4131-a167-6554be5bc117.png">
+                                    </button>
+                                </div>
+                                <div id="bankBorder2">
+                                    <button type="button" style="border: 0; background-color: #ffffff;" id="bank2">
+                                        <img src="https://user-images.githubusercontent.com/126138315/242484264-09d1b703-a2e2-4b24-94f7-1e7810ef195c.png">
+                                    </button>
+                                </div>
+                                <div id="bankBorder3">
+                                    <button type="button" style="border: 0; background-color: #ffffff;" id="bank3">
+                                        <img src="https://user-images.githubusercontent.com/126138315/242484267-62c5d844-24ed-4afd-87f7-bc950724d84d.png">
+                                    </button>
+                                </div>
+                                <div id="bankBorder4">
+                                    <button type="button" style="border: 0; background-color: #ffffff;" id="bank4">
+                                        <img src="https://user-images.githubusercontent.com/126138315/243270031-fe2f4523-7f3f-4e9e-b10c-aeb94059fdb8.png">
+                                    </button>
+                                </div>
+                                <div id="bankBorder5">
+                                    <button type="button" style="border: 0; background-color: #ffffff;" id="bank5">
+                                        <img src="https://user-images.githubusercontent.com/126138315/243270011-ff987a5e-d29a-4e14-a40c-f71fff34cf9a.png">
+                                    </button>
+                                </div>
                             </div>
-                            <div id="bankBorder2">
-                                <button type="button" style="border: 0; background-color: #ffffff;" id="bank2">
-                                    <img src="https://user-images.githubusercontent.com/126138315/242484264-09d1b703-a2e2-4b24-94f7-1e7810ef195c.png">
-                                </button>
-                            </div>
-                            <div id="bankBorder3">
-                                <button type="button" style="border: 0; background-color: #ffffff;" id="bank3">
-                                    <img src="https://user-images.githubusercontent.com/126138315/242484267-62c5d844-24ed-4afd-87f7-bc950724d84d.png">
-                                </button>
-                            </div>
-                            <div id="bankBorder4">
-                                <button type="button" style="border: 0; background-color: #ffffff;" id="bank4">
-                                    <img src="https://user-images.githubusercontent.com/126138315/243270031-fe2f4523-7f3f-4e9e-b10c-aeb94059fdb8.png">
-                                </button>
-                            </div>
-                            <div id="bankBorder5">
-                                <button type="button" style="border: 0; background-color: #ffffff;" id="bank5">
-                                    <img src="https://user-images.githubusercontent.com/126138315/243270011-ff987a5e-d29a-4e14-a40c-f71fff34cf9a.png">
-                                </button>
-                            </div>
+                            <select name="installment" style="margin: 0 0 10px 10px;">
+                                <option value="일시불">일시불</option>
+                                <option value="1개월 무이자">1개월 무이자</option>
+                                <option value="2개월 무이자">2개월 무이자</option>
+                                <option value="4개월">4개월</option>
+                                <option value="8개월">8개월</option>
+                            </select>
                         </div>
-                        <select name="installment" style="margin: 0 0 10px 10px;">
-                            <option value="일시불">일시불</option>
-                            <option value="1개월 무이자">1개월 무이자</option>
-                            <option value="2개월 무이자">2개월 무이자</option>
-                            <option value="4개월">4개월</option>
-                            <option value="8개월">8개월</option>
-                        </select>
-                    </div>
-                    <div class = "error">
-                        <x-input-error :messages="$errors->get('credit_card')" class="mt-2" />
-                    </div>
+                    {{-- 버튼 클릭시 등장하는 영역 끝 --}}
+                    {{-- 카드선택에서 에러발생시 --}}
+                        <div class = "error">
+                            <x-input-error :messages="$errors->get('credit_card')" class="mt-2" />
+                        </div>
+                    {{-- 카드선택에서 에러발생시 --}}
                     <div class="lumpSum">
                         <div class="lum1">상품가격 {{ number_format($sum) }}원</div>
                         <div class="lum2">+</div>

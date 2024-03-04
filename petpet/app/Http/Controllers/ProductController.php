@@ -13,13 +13,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $category = Category::find($request->category);
-        $search = $request->search;
+        //상품 리스트 화면
+
+        $category = Category::find($request->category); //카테고리로 검색했을경우
+        $search = $request->search;             //검색어로 검색했을 경우
 
         $products = Product::when($search, function($query, $search){ 
                 $query->where('name', 'like', "%$search%"); // 검색어가 있을 경우에는 검색
 
-            })->when($category, function($query, $category){ // 카테고리로 검색했을 경우에는
+            })->when($category, function($query, $category){// 카테고리로 검색했을 경우 if-else
 
                 if($category->parent_id == 0){  // 최상위 카테고리로 검색시 하위 카테고리까지 전부 검색
                     return $query->whereIn('category_id', $category->children());
@@ -32,8 +34,6 @@ class ProductController extends Controller
             ->withAvg('reviews','rating')         //상품당 평점 평균 구하기
             ->orderBy('reviews_avg_rating','desc')  //리뷰 평점순 정렬
             ->get();
-
-        //상품의 리뷰를 가져오는 과정 필요
 
         return view('products.index', ['products' => $products, 'search' => $search, 'category' => $category]);
     }
@@ -59,8 +59,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        // 카테고리 값에 따라 다른 페이지를 불러와야함
-        $product->load('reviews.user');
+        //각각의 상품 상세 페이지
+        $product->load('reviews.user');             //상품의 리뷰를 같이 로드해야함
         $product->loadAvg('reviews','rating');        //상품당 평점 평균 구하기
 
         return view('products.show', ['product' => $product]);

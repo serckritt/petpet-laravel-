@@ -19,10 +19,12 @@
                         <input type="password" name="password" placeholder="비밀번호" class="passInput" required/>
                     </div>
                 </div>
-                <div class = "error">
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                </div>
+                {{-- 에러메시지(통상시 보이지않음) --}}
+                    <div class = "error">
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+                {{-- 에러메시지 --}}
                 <br><br>
                 <button type="submit" class="loginBtn" onclick="button()">
                     로그인
@@ -37,7 +39,7 @@
     </div>
 </x-petpet-layout>
 
-{{-- 원본
+{{-- 원본파일 내용
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

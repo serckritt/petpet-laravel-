@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //장바구니 테이블 생성
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->integer('user_id');
-            $table->integer('count');
+            $table->integer('product_id');  //상품아이디
+            $table->integer('user_id');     //유저아이디
+            $table->integer('count');       //한번에 장바구니에 넣은 수
             $table->timestamps();
         });
     }

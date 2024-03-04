@@ -36,15 +36,16 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="error">
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    <x-input-error :messages="$errors->get('phone1')" class="mt-2" />
-                    <x-input-error :messages="$errors->get('phone2')" class="mt-2" />
-                </div>
+                {{-- 에러메시지(통상시 보이지않음) --}}
+                    <div class="error">
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('phone1')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('phone2')" class="mt-2" />
+                    </div>
+                {{-- 에러메시지 --}}
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <button type="submit" class="joinBtn" onclick="button()">
                         회원가입
@@ -55,7 +56,8 @@
     </div>
 </x-petpet-layout>
 
-{{-- <x-guest-layout>
+{{-- 원본파일 내용
+    x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

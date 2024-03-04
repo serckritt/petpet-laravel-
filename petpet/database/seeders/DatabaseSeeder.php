@@ -12,9 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([
-        //     CategorySeeder::class,
-        //     ProductSeeder::class,
-        // ]);
+        //실행필요
+        $this->call([
+             CategorySeeder::class,
+             ProductSeeder::class,
+        ]);
     }
 }

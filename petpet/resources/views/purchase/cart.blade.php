@@ -24,7 +24,7 @@
                         <div class="proSub4">배송비</div>
                     </div>
                     <div class="bhBox">
-                        @php($sum=0)
+                        @php($sum=0) {{--합계 구하는 용도 --}}
                         @forelse ($carts as $cart)
                             <div class="cartItem">
                                 <div class="ciBx2">
@@ -36,6 +36,7 @@
                                         <span>수량 {{ $cart->count }}개 선택</span>
                                     </div>
                                     <div>
+                                        {{-- 장바구니에서 삭제 버튼 --}}
                                         <form action="{{ route('carts.destroy', ['cart' => $cart->id ]) }}" method="POST" id="form{{ $loop->count }}">
                                             @csrf
                                             @method('DELETE')
@@ -44,6 +45,7 @@
                                                     document.getElementById('form'+{{$loop->count}}).submit();
                                                 }">X</button>
                                         </form>
+                                        {{-- 삭제 버튼 --}}
                                     </div>
                                 </div>
                                 <div class="ciBx4">{{ number_format($cart->product->prize * $cart->count)}}</div>
@@ -51,6 +53,7 @@
                             </div>
                             @php($sum += $cart->product->prize * $cart->count)
                         @empty
+                            {{-- 장바구니가 비면 메시지 출력 --}}
                             <div class="bhBox">
                                 <div class="warningIcon">
                                     <img src="https://user-images.githubusercontent.com/126138315/234766281-4bac09fc-2ff6-487a-86ec-d27a592ec212.png">
@@ -58,7 +61,7 @@
                                 <div class="bhBoxContent">장바구니가 비었습니다</div>
                             </div> 
                         @endforelse
-                        @if ($carts)
+                        @if ($carts) {{-- 장바구니에 내용이 있는 경우에만 출력 --}}
                             <div class="lumpSum">
                                 <div class="lum1">상품가격 {{ number_format($sum) }}원</div>
                                 <div class="lum2">+</div>
@@ -69,7 +72,7 @@
                         @endif
                     </div>
                 </div>
-                @if ($sum!=0)
+                @if ($carts) {{-- 장바구니에 내용이 있는 경우에만 출력 --}}
                     <div class="cbtnArea">
                         <form action="{{ route('buy') }}" method="GET">
                             <button type="submit" class="payBtn">주문하기</button>

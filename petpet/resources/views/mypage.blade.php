@@ -1,4 +1,3 @@
-{{-- 주문기록 수정필요 --}}
 <x-petpet-layout>
     <x-petpet-page>
         {{-- 구매기록 --}}

@@ -9,7 +9,7 @@
     </div>        
 
     <div class="category">
-        <button id="cateBtn" type="button">     {{-- 카테고리 여는 버튼, 이미지는 버튼용 이미지 --}}
+        <button id="cateBtn" type="button">     {{-- 카테고리 여는 버튼, 이미지는 '전체카테고리' 적혀있는 이미지 --}}
             <div class="ctbi"><img src="https://user-images.githubusercontent.com/126138315/234766244-5d475cab-3f3b-44e2-84e5-1e29193f5501.png"></div>
         </button>
         <div class="allTheWay">
@@ -42,6 +42,7 @@
                                 </div>
                             @endforeach              
                             <div class="subMesContentImg">
+                                {{-- 1차분류 종료시마다 다른 이미지 불러옴 --}}
                                 @switch($loop->iteration)
                                     @case(1)
                                         <img src="https://user-images.githubusercontent.com/126138315/243312151-9254c37a-c621-4ea4-aaeb-4111ce87edb1.png">

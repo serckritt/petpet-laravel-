@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // 카테고리 테이블 생성, 시더 실행 필요
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('parent_id');
+            $table->string('name'); //이름
+            $table->integer('parent_id'); //부모 카테고리
             $table->timestamps();
         });
     }

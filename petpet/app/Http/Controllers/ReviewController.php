@@ -34,6 +34,7 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
+        //리뷰등록
         $input = $request->validated();
 
         Review::create([

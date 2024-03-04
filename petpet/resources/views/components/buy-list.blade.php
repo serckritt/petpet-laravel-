@@ -1,3 +1,4 @@
+{{-- 결제창에서 구매하려는 상품의 목록 나열 --}}
 @props(['product', 'count'])
 
 <div class="cartItem">

@@ -1,3 +1,4 @@
+{{-- 홈페이지에서 사료와 간식 카테고리의 인기상품을 나열하는 부분 --}}
 @props(['products', 'text'])
 <div>
     <div class="mpfont">최고 인기 <span>{{ $text }}</span></div>

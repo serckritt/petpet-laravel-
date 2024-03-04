@@ -23,18 +23,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::resource('carts', CartController::class)->middleware('auth');
+Route::resource('products', ProductController::class);
+Route::resource('reviews', ReviewController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage', MyPageController::class)->name('mypage');
+    Route::resource('carts', CartController::class);
     Route::get('buy', [PurchaseController::class, 'buy'])->name('buy');
     Route::post('purchase', [PurchaseController::class, 'purchase'])->name('purchase');
+    Route::delete('records', [RecordController::class, 'destroy'])->name('records.destroy');
 });
-
-Route::delete('records', [RecordController::class, 'destroy'])->name('records.destroy');
-
-Route::resource('products', ProductController::class);
-Route::resource('reviews', ReviewController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

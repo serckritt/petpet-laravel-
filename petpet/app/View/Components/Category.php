@@ -17,8 +17,10 @@ class Category extends Component
 
     public function __construct()
     {
-        $this->categories = ModelsCategory::where('parent_id',0)
-            ->with('child', 'child.child')
+        //컴포넌트에서 카테고리 모델을 호출
+        
+        $this->categories = ModelsCategory::where('parent_id',0) //최상위 카테고리만 따로 불러냄
+            ->with('child', 'child.child')      //지연로딩 방지
             ->get();
     }
 

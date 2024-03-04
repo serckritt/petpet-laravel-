@@ -1,5 +1,5 @@
+{{-- 푸터 --}}
 <div class="footer"> 
-    {{-- 임시푸터 --}}
     <div class="footerBox1">
         <div class="support">
             <b style="font-size: 1.2em;">고객지원센터</b><br><br>

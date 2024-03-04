@@ -1,4 +1,3 @@
-{{-- 수정필요 바로구매 링크 --}}
 <x-petpet-layout>
     <x-petpet-page>
         <div class="probox">
@@ -25,6 +24,7 @@
                 <div class="pcount">
                     <div class="pcount1">수량</div>
                     <div class="pcount2">
+                        {{-- 플러스 마이너스 버튼으로 조절 --}}
                         <button type ="button" onclick="proCount('minus')">-</button>
                         <div id="cResult">1</div>
                         <button type="button" onclick="proCount('plus')">+</button>
@@ -41,6 +41,7 @@
                         <input type="hidden" name="product_id" value="{{ $product->id }}"> {{-- 상품종류 --}}
                         <input type="hidden" name="count" id="hiddencnt" value="1"> {{-- 수량 --}}
                         <input type="hidden" name="type" value="1"> {{-- 바로구매와 장바구니구매를 구분하는 기능--}}
+                        {{-- 버튼 클릭에 따라 장바구니 or 바로구매 --}}
                         <button type="submit" id="shopBasketBtn">장바구니</button>
                         <button type="submit" id="buyNowBtn" formmethod="GET" formaction="{{ route('buy') }}">바로구매</button>
                     </div>
@@ -54,10 +55,9 @@
 
         {{-- 이하 상품설명 및 리뷰내용, 리뷰작성창 --}}
         <div class="twoMenu">
-            <x-product-detail :category="$product->category->parent->parent->id"/>
-                {{-- 상품설명 카테고리에 따라 다른 내용 출력 --}}
+            <x-product-detail :category="$product->category->parent->parent->id"/>   {{-- 상품설명, 카테고리에 따라 다른 내용 출력 --}}
             <div id="menu2">
-                @auth   {{-- 버튼 클릭시 리뷰작성창 등장 내용은 div id="menu3" --}}
+                @auth   {{-- 버튼 클릭시 리뷰작성창 등장, 리뷰작성창의 내용은 div id="menu3" --}}
                     <button type="button" class="reviewWrite" id="reviewWrite">리뷰쓰기</button>
                 @else   {{-- 로그인 하지않으면 버튼 클릭시 로그인창 --}}
                     <a href="{{ route('login') }}"><button type="button" class="reviewWrite">리뷰쓰기</button></a>
@@ -66,12 +66,12 @@
                 @forelse ($product->reviews as $review)
                     {{-- 리뷰창 --}}
                     <div class="reviewBx1">
-                        <img src="https://user-images.githubusercontent.com/126138315/234766275-37966cb5-fb4c-4924-b487-3f3595c7583a.png">
+                        <img src="https://user-images.githubusercontent.com/126138315/234766275-37966cb5-fb4c-4924-b487-3f3595c7583a.png">{{-- 프로필사진 이미지 --}}
                         <div class="rBxName">
                             {{ $review->user->name }}<br>
                             <div class="wrap-star">
                                 <div class='star-rating'>
-                                    {{--width값에 rating*20 값 입력--}}
+                                    {{-- 평점은 5점이 만점, 5*20=100 --}}
                                     <span style ="width:{{ ($review->rating *20).'%'}}"></span>
                                 </div>
                             </div>
@@ -101,7 +101,8 @@
                         <tr>
                             <td class="table1" style=" height:50px; text-align:center; ">평점</td>
                             <td class="table2">
-                                <div class="pcount3">{{-- 평점설정 --}}
+                                <div class="pcount3">
+                                    {{-- 평점 조절 영역 --}}
                                     <button type ="button" onclick="starCount('minus')"
                                         style="width:40px; height: 40px; font-size: 1.1em;">-</button>
                                     <div id="starBx">

@@ -20,8 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::shouldBeStrict();
+        Model::shouldBeStrict(); 
 
+        //로그인시 이전 페이지로 돌아가게 하는 기능
         view()->composer('auth.login', function ($view) {
             $login_url = route('login');
             $intend_url = url()->previous();

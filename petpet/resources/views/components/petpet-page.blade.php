@@ -1,4 +1,3 @@
-{{-- .php로 된 링크 수정필요 --}}
 <div class="nevBg1">      
     <div class="nevBg2"></div> {{-- 네비게이션바 배경 --}}
 </div>

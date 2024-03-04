@@ -31,7 +31,7 @@
                             <div class="pbcReview">
                                 <div class="pbcIcon">
                                     <img src="https://user-images.githubusercontent.com/126138315/234766275-37966cb5-fb4c-4924-b487-3f3595c7583a.png">
-                                    {{-- 임시 리뷰프사 --}}
+                                    {{-- 이미지는 프로필사진용 --}}
                                 </div>
                                 <div class="pbcrContent">{{ $product->reviews()->latest()->first()->text }}</div>
                             </div>
@@ -53,6 +53,7 @@
                             <input type="hidden" value="1" name="count" id="productCount{{ $loop->iteration }}">
                             <div>
                                 <div class="pbCount">
+                                    {{-- 바로 장바구니에 등록할때 한번에 몇개를 등록할것인지 플러스 마이너스 버튼 --}}
                                     <button type ="button" id="pbNumMinus{{ $loop->iteration }}">-</button>
                                     <div class="pbNumber" id="pbNum{{ $loop->iteration }}">1</div>
                                     <button type="button" id="pbNumPlus{{ $loop->iteration }}">+</button>

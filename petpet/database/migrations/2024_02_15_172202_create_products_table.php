@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // 상품 테이블 생성, 시더 실행 필요
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('img');
-            $table->integer('prize');
-            $table->integer('category_id');
+            $table->string('name'); //이름
+            $table->string('img');  //이미지 url
+            $table->integer('prize'); //가격
+            $table->integer('category_id'); //카테고리 아이디
             $table->timestamps();
         });
     }

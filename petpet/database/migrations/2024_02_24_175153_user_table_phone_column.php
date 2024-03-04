@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // 유저 테이블에 전화번호 컬럼 추가
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone');
         });

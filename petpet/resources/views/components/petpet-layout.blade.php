@@ -1,3 +1,4 @@
+{{-- petpet 기본레이아웃 --}}
 @props(['bgColor' => 'ffffff'])
 <!DOCTYPE html>
 <html lang="ko">
