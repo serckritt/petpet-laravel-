@@ -60,7 +60,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //각각의 상품 상세 페이지
-        $product->load('reviews.user');             //상품의 리뷰를 같이 로드해야함
+        //리뷰의 시간순 정렬을 해야하나 작동 안되는 이유를 모르겠음
+        $product->load('reviews.user');             //상품의 리뷰, 리뷰의 작성자를 같이 로드해야함
         $product->loadAvg('reviews','rating');        //상품당 평점 평균 구하기
 
         return view('products.show', ['product' => $product]);
