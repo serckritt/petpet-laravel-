@@ -61,10 +61,20 @@ class ProductController extends Controller
     {
         //각각의 상품 상세 페이지
         //리뷰의 시간순 정렬을 해야하나 작동 안되는 이유를 모르겠음
-        $product->load('reviews.user');             //상품의 리뷰, 리뷰의 작성자를 같이 로드해야함
-        $product->loadAvg('reviews','rating');        //상품당 평점 평균 구하기
 
-        return view('products.show', ['product' => $product]);
+        // $product->load('reviews.user');             //상품의 리뷰, 리뷰의 작성자를 같이 로드해야함
+        // $product->loadAvg('reviews','rating');        //상품당 평점 평균 구하기
+
+        // 이방법을 사용하려 했으나 desc 적용하는법을 몰라 다른방법 사용
+
+        $reviews = $product->reviews()
+                            ->with('user')
+                            ->latest()
+                            ->get();
+
+        // 평균은 뷰 파일에서 avg 메소드로 구하게 시켰음   
+
+        return view('products.show', ['product' => $product, 'reviews' => $reviews]);
     }
 
     /**

@@ -14,9 +14,9 @@
                 </div>
                 <div class="pinfo1">
                     <div class="wrap-star">
-                        <b style="color:green; font-size:0.6em;">평점 {{ round($product->reviews_avg_rating,2) }}</b>
+                        <b style="color:green; font-size:0.6em;">평점 {{ round($reviews->avg('rating'),2) }}</b>
                         <div class='star-rating'>
-                            <span style ="width:{{ (round($product->reviews_avg_rating,2)*20).'%'}}"></span>
+                            <span style ="width:{{ (round($reviews->avg('rating'),2)*20).'%'}}"></span>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <a href="{{ route('login') }}"><button type="button" class="reviewWrite">리뷰쓰기</button></a>
                 @endauth
 
-                @forelse ($product->reviews as $review)
+                @forelse ($reviews as $review)
                     {{-- 리뷰창 --}}
                     <div class="reviewBx1">
                         <img src="https://user-images.githubusercontent.com/126138315/234766275-37966cb5-fb4c-4924-b487-3f3595c7583a.png">{{-- 프로필사진 이미지 --}}
